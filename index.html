@@ -15,7 +15,20 @@
       content="从 PPT 转换而来的在线作品集，保留原始版式并适配桌面端与移动端浏览。"
     />
     <meta property="og:image" content="assets/web/slide-01.webp" />
-    <link rel="preload" as="image" href="assets/web/slide-01.webp" />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/hero/mobile-cover.webp"
+      media="(max-width: 760px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/web-1440/slide-01.webp"
+      media="(min-width: 761px)"
+      imagesrcset="assets/web-960/slide-01.webp 960w, assets/web-1440/slide-01.webp 1440w, assets/web/slide-01.webp 1920w"
+      imagesizes="100vw"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -25,7 +38,7 @@
         <small>Portfolio</small>
       </a>
       <nav class="top-nav" aria-label="作品集章节">
-        <a href="#slide-03">简历</a>
+        <a href="#slide-02">简历</a>
         <a href="#slide-05">品牌</a>
         <a href="#slide-20">社媒</a>
         <a href="#slide-29">画册</a>
@@ -39,13 +52,31 @@
 
     <main>
       <section class="hero" id="slide-01" aria-label="王泷正作品集封面">
-        <img
-          src="assets/web/slide-01.webp"
-          alt="王泷正作品集封面"
-          width="1920"
-          height="1080"
-          fetchpriority="high"
-        />
+        <picture>
+          <source
+            media="(max-width: 760px)"
+            srcset="assets/hero/mobile-cover.webp"
+            type="image/webp"
+          />
+          <source
+            type="image/webp"
+            srcset="
+              assets/web-960/slide-01.webp   960w,
+              assets/web-1440/slide-01.webp 1440w,
+              assets/web/slide-01.webp      1920w
+            "
+            sizes="100vw"
+          />
+          <img
+            src="assets/web-1440/slide-01.webp"
+            alt="王泷正作品集封面"
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+        <a class="preview-link" href="#slide-02">预览作品</a>
       </section>
 
       <section class="slides" id="slides" aria-label="作品集页面"></section>

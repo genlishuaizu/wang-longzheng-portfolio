@@ -25,7 +25,9 @@ const slides = Array.from({ length: slideCount }, (_, index) => {
     number,
     id: `slide-${padded}`,
     title: `${section} ${padded}`,
-    image: `assets/web/slide-${padded}.webp`,
+    imageSmall: `assets/web-960/slide-${padded}.webp`,
+    imageMedium: `assets/web-1440/slide-${padded}.webp`,
+    imageLarge: `assets/web/slide-${padded}.webp`,
     fallback: `assets/slides/slide-${padded}.${pngSlides.has(number) ? "png" : "jpeg"}`,
     thumb: `assets/thumbs/slide-${padded}.jpg`,
   };
@@ -41,16 +43,22 @@ let currentSlide = 0;
 
 function createPicture(slide, eager = false) {
   const picture = document.createElement("picture");
+  const srcset = `${slide.imageSmall} 960w, ${slide.imageMedium} 1440w, ${slide.imageLarge} 1920w`;
+  const sizes = "(max-width: 760px) calc(100vw - 20px), min(1200px, calc(100vw - 112px))";
   const source = document.createElement("source");
   source.type = "image/webp";
-  source.srcset = slide.image;
+  source.srcset = srcset;
+  source.sizes = sizes;
 
   const image = document.createElement("img");
-  image.src = slide.fallback;
+  image.src = slide.imageMedium;
+  image.srcset = srcset;
+  image.sizes = sizes;
   image.alt = `王泷正作品集第 ${String(slide.number).padStart(2, "0")} 页`;
   image.width = 1920;
   image.height = 1080;
   image.loading = eager ? "eager" : "lazy";
+  image.fetchPriority = eager ? "high" : "low";
   image.decoding = "async";
 
   picture.append(source, image);
@@ -77,7 +85,7 @@ function buildSlides() {
     frame.className = "slide-frame";
     frame.type = "button";
     frame.setAttribute("aria-label", `放大查看第 ${slide.number} 页`);
-    frame.append(createPicture(slide, slide.number <= 4));
+    frame.append(createPicture(slide));
     frame.addEventListener("click", () => openLightbox(slide.number - 1));
 
     panel.append(header, frame);
@@ -104,7 +112,7 @@ function updateActiveThumb(number) {
 function openLightbox(index) {
   currentSlide = Math.max(0, Math.min(slides.length - 1, index));
   const slide = slides[currentSlide];
-  lightboxImage.src = slide.image;
+  lightboxImage.src = slide.imageLarge;
   lightboxImage.alt = `王泷正作品集第 ${slide.number} 页放大图`;
   lightboxCaption.textContent = `${String(slide.number).padStart(2, "0")} / ${slideCount}`;
   lightbox.classList.add("is-open");
