@@ -31,7 +31,6 @@ const slides = Array.from({ length: slideCount }, (_, index) => {
   };
 });
 
-const thumbStrip = document.querySelector("#thumbStrip");
 const slidesRoot = document.querySelector("#slides");
 const progressBar = document.querySelector("#progressBar");
 const backToTop = document.querySelector("#backToTop");
@@ -58,24 +57,6 @@ function createPicture(slide, eager = false) {
   return picture;
 }
 
-function buildThumbs() {
-  const fragment = document.createDocumentFragment();
-
-  slides.forEach((slide) => {
-    const link = document.createElement("a");
-    link.className = "thumb-card";
-    link.href = `#${slide.id}`;
-    link.dataset.slide = String(slide.number);
-    link.innerHTML = `
-      <img src="${slide.thumb}" alt="第 ${String(slide.number).padStart(2, "0")} 页缩略图" loading="lazy" width="420" height="236">
-      <span>${String(slide.number).padStart(2, "0")}</span>
-    `;
-    fragment.append(link);
-  });
-
-  thumbStrip.append(fragment);
-}
-
 function buildSlides() {
   const fragment = document.createDocumentFragment();
 
@@ -96,7 +77,7 @@ function buildSlides() {
     frame.className = "slide-frame";
     frame.type = "button";
     frame.setAttribute("aria-label", `放大查看第 ${slide.number} 页`);
-    frame.append(createPicture(slide));
+    frame.append(createPicture(slide, slide.number <= 4));
     frame.addEventListener("click", () => openLightbox(slide.number - 1));
 
     panel.append(header, frame);
@@ -156,7 +137,6 @@ function observeSlides() {
   document.querySelectorAll(".hero, .slide-panel").forEach((item) => observer.observe(item));
 }
 
-buildThumbs();
 buildSlides();
 observeSlides();
 updateProgress();

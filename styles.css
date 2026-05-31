@@ -81,8 +81,7 @@ img {
 }
 
 .top-nav a,
-.download-link,
-.hero-copy a {
+.download-link {
   min-height: 38px;
   display: inline-flex;
   align-items: center;
@@ -162,15 +161,6 @@ img {
   pointer-events: none;
 }
 
-.hero-copy {
-  position: relative;
-  z-index: 1;
-  width: min(760px, calc(100% - 44px));
-  padding-top: 42vh;
-  text-align: center;
-}
-
-.hero-copy p,
 .section-heading p,
 .slide-kicker,
 .thumb-card span {
@@ -180,19 +170,6 @@ img {
   font-weight: 800;
   letter-spacing: 0;
   text-transform: uppercase;
-}
-
-.hero-copy h1 {
-  margin: 10px 0 22px;
-  font-size: clamp(42px, 7vw, 92px);
-  line-height: 0.95;
-  letter-spacing: 0;
-}
-
-.hero-copy a {
-  padding: 0 18px;
-  background: var(--accent);
-  color: #fff;
 }
 
 .overview {
@@ -283,12 +260,21 @@ img {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  padding: 0;
   overflow: hidden;
+  appearance: none;
   border: 1px solid rgba(25, 23, 19, 0.1);
   border-radius: 8px;
   background: #fff;
+  font: inherit;
   box-shadow: var(--shadow);
   cursor: zoom-in;
+}
+
+.slide-frame picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .slide-frame img {
@@ -442,14 +428,6 @@ img {
 
   .hero img {
     object-position: center;
-  }
-
-  .hero-copy {
-    padding-top: 48vh;
-  }
-
-  .hero-copy h1 {
-    font-size: clamp(36px, 12vw, 50px);
   }
 
   .overview {
