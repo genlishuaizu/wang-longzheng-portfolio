@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>王泷正作品集 | Portfolio</title>
+    <meta
+      name="description"
+      content="王泷正平面设计作品集，包含品牌商业设计、包装视觉、社媒运营、电商内容与书籍画册设计。"
+    />
+    <meta name="theme-color" content="#f5f1ea" />
+    <meta property="og:title" content="王泷正作品集 | Portfolio" />
+    <meta
+      property="og:description"
+      content="从 PPT 转换而来的在线作品集，保留原始版式并适配桌面端与移动端浏览。"
+    />
+    <meta property="og:image" content="assets/web/slide-01.webp" />
+    <link rel="preload" as="image" href="assets/web/slide-01.webp" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="站点导航">
+      <a class="brand" href="#slide-01" aria-label="回到作品集首页">
+        <span>王泷正</span>
+        <small>Portfolio</small>
+      </a>
+      <nav class="top-nav" aria-label="作品集章节">
+        <a href="#slide-03">简历</a>
+        <a href="#slide-05">品牌</a>
+        <a href="#slide-20">社媒</a>
+        <a href="#slide-29">画册</a>
+      </nav>
+      <a class="download-link" href="作品集.pptx" download>下载 PPT</a>
+    </header>
+
+    <div class="progress" aria-hidden="true">
+      <span id="progressBar"></span>
+    </div>
+
+    <main>
+      <section class="hero" id="slide-01" aria-labelledby="heroTitle">
+        <img
+          src="assets/web/slide-01.webp"
+          alt="王泷正作品集封面"
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+        />
+        <div class="hero-copy">
+          <p>Graphic Design Portfolio</p>
+          <h1 id="heroTitle">王泷正作品集</h1>
+          <a href="#gallery">浏览作品</a>
+        </div>
+      </section>
+
+      <section class="overview" id="gallery" aria-labelledby="overviewTitle">
+        <div class="section-heading">
+          <p>34 Pages</p>
+          <h2 id="overviewTitle">作品总览</h2>
+        </div>
+        <div class="thumb-strip" id="thumbStrip" aria-label="作品缩略图导航"></div>
+      </section>
+
+      <section class="slides" id="slides" aria-label="作品集页面"></section>
+    </main>
+
+    <button class="back-to-top" id="backToTop" type="button" aria-label="返回顶部">
+      ↑
+    </button>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="放大查看作品页">
+      <button class="lightbox-close" id="lightboxClose" type="button" aria-label="关闭">×</button>
+      <button class="lightbox-prev" id="lightboxPrev" type="button" aria-label="上一页">‹</button>
+      <img id="lightboxImage" src="" alt="" />
+      <button class="lightbox-next" id="lightboxNext" type="button" aria-label="下一页">›</button>
+      <p id="lightboxCaption"></p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
